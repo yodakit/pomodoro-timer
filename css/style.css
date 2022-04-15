@@ -22,7 +22,7 @@ body {
 .tabs {
   display: inline-flex;
   position: relative;
-  margin-top: 47px;
+  margin-top: 45px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #161932;
@@ -102,4 +102,54 @@ body {
   fill: #D7E0FF;
   opacity: 0.5;
   cursor: pointer;
+}
+@media (max-width: 1000px) {
+  .timer {
+    margin: 109px auto 0 auto;
+  }
+  .settings {
+    margin: 144px auto 0 auto;
+  }
+}
+
+@media (max-width: 450px) {
+  body {
+    padding: 32px 0 15px 0;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .tab {
+    font-size: 0.75rem;
+  }
+  .timer {
+    width: 300px;
+    height: 300px;
+    padding: 16px;
+    margin: 45px auto 0 auto;
+  }
+  .timer__wrapper {
+    width: 270px;
+    height: 270px;
+    padding: 10px;
+  }
+  .progress-ring {
+    width: 250px;
+    height: 250px;
+  }
+  .progress-ring__circle {
+    stroke-width: 12px;
+    cx: 125px;
+    cy: 125px;
+    r: 118px;
+  }
+  .time {
+    font-size: 4.5rem;
+  }
+  .time__button {
+    font-size: 0.875rem;
+  }
+  .settings {
+    margin: 79px auto 0 auto;
+  }
 }
