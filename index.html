@@ -9,7 +9,24 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  
+  <h1 class="title">pomodoro</h1>
+  <ul class="tabs">
+    <li id="timer" class="tab tab__active">pomodoro</li>
+    <li id="short" class="tab">short break</li>
+    <li id="long" class="tab">long break</li>
+  </ul> 
+  <div class="timer">
+    <div class="timer__wrapper">
+      <svg class="progress-ring">
+        <circle class="progress-ring__circle" />
+      </svg>
+      <div class="timer__info">
+        <h2 class="time">25:00</h2>
+        <p class="time__button">pause</p>
+      </div>
+    </div>
+  </div> 
+  <img src="img/Shape.svg" alt="settings" class="settings">
   <script src="/js/app.js"></script>
 </body>
 </html>

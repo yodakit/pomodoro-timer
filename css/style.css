@@ -1,8 +1,105 @@
 :root {
   --main-font: "Kumbh";
+  --main-color: #F87070;
 }
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+body {
+  background-color: #1E213F;
+  padding: 48px 0 20px 0;
+}
+
+.title {
+  font-family: "Kumbh";
+  font-size: 2rem;
+  text-align: center;
+  color: #D7E0FF;
+}
+
+.tabs {
+  display: inline-flex;
+  position: relative;
+  margin-top: 47px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #161932;
+  border-radius: 31.5px;;
+  padding: 7px;
+}
+.tab {
+  list-style-type: none;
+  padding: 15px 26px;
+  font-family: var(--main-font);
+  color: #D7E0FF;
+  font-size: 0.875rem;
+  border-radius: 26.5px;
+  cursor: pointer;
+}
+.tab__active {
+  background-color: var(--main-color);
+  color: #1E213F;
+}
+
+.timer {
+  width: 410px;
+  height: 410px;
+  margin: 45px auto 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(315deg, #2E325A 0%, #0E112A 100%);
+  box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
+  padding: 22px;
+}
+.timer__wrapper {
+  position: relative;
+  width: 366px;
+  height: 366px;
+  border-radius: 50%;
+  background-color: #161932;
+  padding: 14px;
+}
+.progress-ring {
+  width: 340px;
+  height: 340px;
+}
+.progress-ring__circle {
+  stroke: var(--main-color);
+  stroke-width: 14px;
+  cx: 170px;
+  cy: 170px;
+  r: 160px;
+  fill: transparent;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+.timer__info {
+  display: inline-block;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.time {
+  font-family: var(--main-font);
+  color: #D7E0FF;
+  font-size: 6.25rem;
+}
+.time__button {
+  font-family: var(--main-font);
+  font-size: 1rem;
+  letter-spacing: 15px;
+  color: #D7E0FF;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+
+.settings {
+  display: block;
+  margin: 43px auto 0 auto;
+  fill: #D7E0FF;
+  opacity: 0.5;
+  cursor: pointer;
 }
