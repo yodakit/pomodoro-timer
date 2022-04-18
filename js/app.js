@@ -1,7 +1,8 @@
+// TIMER
 // Variables
-let pomodoroTime = 25,
-    shortTime = 5,
-    longTime = 15,
+let pomodoroTime = localStorage.getItem('pomodoroTime') || 25,
+    shortTime = localStorage.getItem('shortTime') || 5,
+    longTime = localStorage.getItem('longTime') || 15,
     delayBar = localStorage.getItem('delay') || 60,
     actualTime = localStorage.getItem('actualTime'),
     timeActiveTab = localStorage.getItem('timeActiveTab'),
@@ -20,6 +21,7 @@ const timeELem = document.getElementById('time'),
 // Funсtions
 // Render actual time
 const renderTime = (time) => {
+  console.log(time);
   const minutes = Math.trunc(time / 60);
   const seconds = time - (minutes * 60);
 
@@ -82,17 +84,15 @@ const setActiveTab = (newTab) => {
   newTab.classList.add('tab-active');
 };
 
-// Start position
-// Progress bar
+// Progress bar start
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = circumference;
 
+// start position
 setActiveTab(activeTab);
 if (!actualTime) {
   setActiveTime();
-  renderProgressBar(100);
 }
-
 setPercentBar(actualTime);
 renderTime(actualTime);
 
@@ -131,3 +131,131 @@ tabs.forEach(tab => {
     renderProgressBar(100);
   });
 });
+
+// SETTINGS
+// variables
+let color = localStorage.getItem('color') || '#F87070',
+    font = localStorage.getItem('font') || 'Kumbh', 
+    newColor, 
+    newFont;
+    
+const settingsBtn = document.getElementById('settings'),
+      modalWrapper = document.getElementById('modalWrapper'),
+      closeBtn = document.getElementById('cross'),
+      modal = document.getElementById('modal'),
+      inputPomodoro = document.getElementById('inputPomodoro'),
+      inputShort = document.getElementById('inputShort'),
+      inputLong = document.getElementById('inputLong'),
+      plus = document.querySelectorAll('.number-plus'),
+      minus = document.querySelectorAll('.number-minus'),
+      fontItems = document.querySelectorAll('.font__item'),
+      fontElements = document.querySelectorAll('.font-family'),
+      colorElements = document.querySelectorAll('.color__item'),
+      applyBtn = document.getElementById('modalBtn'),
+      allElements = document.documentElement;
+
+const closeModal = () => {
+  modalWrapper.classList.remove('visible');
+};
+
+const increaseValue = (event) => {
+  const input = event.target.parentElement.nextElementSibling;
+  if (input?.className === 'time__input') {
+    input.stepUp();  
+  }
+};
+
+const decreaseValue = (event) => {
+  const input = event.target.parentElement.previousElementSibling;
+  if (input?.className === 'time__input') {
+    input.stepDown();
+  }
+};
+
+const setActiveFont = (event) => {
+  fontItems.forEach(item => 
+    item.classList.remove('font__item-active'));
+  event.target.parentElement.classList.add('font__item-active');
+  newFont = event.target.dataset.font;
+};
+
+const setActiveColor = (event) => {
+  colorElements.forEach(elem => 
+    elem.classList.remove('color__item-active'));
+  event.target.classList.add('color__item-active');
+  newColor = event.target.dataset.color;
+};
+
+const applySettings = () => {
+  pomodoroTime = +inputPomodoro.value;
+  shortTime = +inputShort.value;
+  longTime = +inputLong.value;
+
+  [font, color] = [newFont || font, newColor || color];
+
+  localStorage.setItem('font', font);
+  localStorage.setItem('color', color);
+  localStorage.setItem('pomodoroTime', pomodoroTime);
+  localStorage.setItem('shortTime', shortTime);
+  localStorage.setItem('longTime', longTime);
+
+  localStorage.removeItem('actualTime');
+  localStorage.removeItem('delay');
+
+  clearInterval(interval);
+
+  allElements.style.setProperty('--main-color', color);
+  allElements.style.setProperty('--main-font', font);
+};
+
+// start settings
+inputPomodoro.value = pomodoroTime;
+inputShort.value = shortTime;
+inputLong.value = longTime;
+document.querySelector(`[data-font="${font}"]`).parentElement.classList.add('font__item-active');
+document.querySelector(`[data-color="${color}"]`).classList.add('color__item-active');
+applySettings();
+
+// listeners
+settingsBtn.addEventListener('click', () => {
+  modalWrapper.classList.add('visible');
+});
+
+closeBtn.addEventListener('click', closeModal);
+
+modalWrapper.addEventListener('click', (event) => {
+  if (event.target === modalWrapper){
+    closeModal();
+  }
+});
+
+window.addEventListener('keydown', (event) => {
+  if(event.key === "Escape") {
+    closeModal();
+  }
+});
+
+plus.forEach(elem => {
+  elem.addEventListener('click', increaseValue);
+});
+
+minus.forEach(elem => {
+  elem.addEventListener('click', decreaseValue);
+});
+
+fontElements.forEach(elem => {
+  elem.addEventListener('click', setActiveFont);
+});
+
+colorElements.forEach(elem => {
+  elem.addEventListener('click', setActiveColor);
+});
+
+applyBtn.addEventListener('click', () => {
+  applySettings();
+  setActiveTime();
+  renderTime(actualTime);
+  setPercentBar(actualTime);
+  closeModal();
+});
+

@@ -90,7 +90,7 @@ li {
 .timer__time {
   font-family: var(--main-font);
   color: #D7E0FF;
-  font-size: 6.25rem;
+  font-size: 6rem;
 }
 .timer__button {
   font-family: var(--main-font);
@@ -106,22 +106,39 @@ li {
 .settings {
   display: block;
   margin: 43px auto 0 auto;
-  fill: #D7E0FF;
-  opacity: 0.5;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
+  outline: none;
+}
+.settings__icon {
+  fill: #D7E0FF;  
+  opacity: 0.5;
 }
 
+.modal__wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+}
 .modal {
-  display: none;
-  z-index: 100;
-  position: absolute;
+  position: relative;
   width: 540px;
+  margin: auto;
   padding: 34px 0 59px 0;
   background-color: white;
   border-radius: 25px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+}
+.visible {
+  transition: ease-in-out 0.3s;
+  opacity: 1;
+  visibility: visible;
 }
 .modal__header {
   display: flex;
