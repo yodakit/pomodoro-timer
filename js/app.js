@@ -80,23 +80,6 @@ const setActiveTab = (newTab) => {
   newTab.classList.add('tab-active');
 };
 
-const setDelay = () => {
-  const time = Math.ceil(timeActiveTab / 60);
-  console.log(time);
-  if (time > 10) {
-    return 60;
-  }
-  if (time > 5) {
-    return 30;
-  }
-  if (time > 3) {
-    return 15;
-  }
-  if (time >= 0) {
-    return 1;
-  }
-};
-
 // Progress bar start
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = circumference;
@@ -245,6 +228,19 @@ window.addEventListener('keydown', (event) => {
   if(event.key === "Escape") {
     closeModal();
   }
+});
+
+document.querySelectorAll('.time__input').forEach(input => {
+  input.addEventListener('change', (event) => {
+    const current = event.target;
+
+    if (current.value > 60) {
+      current.value = 60; 
+    } 
+    if (current.value < 1) {
+      current.value = 1; 
+    } 
+  });
 });
 
 plus.forEach(elem => {
