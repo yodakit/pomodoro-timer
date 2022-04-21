@@ -1,12 +1,13 @@
 // TIMER
 // Variables
-let pomodoroTime = localStorage.getItem('pomodoroTime') || 25,
+let pomodoroTime = localStorage.getItem('pomodoroTime') || 20,
     shortTime = localStorage.getItem('shortTime') || 5,
     longTime = localStorage.getItem('longTime') || 15,
-    delayBar = localStorage.getItem('delay') || 60,
     actualTime = localStorage.getItem('actualTime'),
     timeActiveTab = localStorage.getItem('timeActiveTab'),
     interval;
+
+const audio = new Audio("../audio/timer-bell.mp3");
 
 // Dom elements and options
 const timeELem = document.getElementById('time'),
@@ -21,7 +22,6 @@ const timeELem = document.getElementById('time'),
 // Funсtions
 // Render actual time
 const renderTime = (time) => {
-  console.log(time);
   const minutes = Math.trunc(time / 60);
   const seconds = time - (minutes * 60);
 
@@ -46,6 +46,7 @@ const setPercentBar = (actualSeconds) => {
 // decrease actual time
 const decreaseTime = () => {
   if (actualTime === 0) {
+    audio.play();
     localStorage.removeItem('actualTime');
     switchBtn.innerText = 'restart';
     clearInterval(interval);
@@ -53,15 +54,10 @@ const decreaseTime = () => {
     return;
   }
 
-  delayBar--;
   actualTime--;
   localStorage.setItem('actualTime', actualTime);
-  localStorage.setItem('delay', delayBar);
   
-  if (!delayBar) {
-    setPercentBar(actualTime);
-    delayBar = 60;
-  }
+  setPercentBar(actualTime);
   renderTime(actualTime);
 };
 
@@ -82,6 +78,23 @@ const setActiveTime = () => {
 const setActiveTab = (newTab) => {
   tabs.forEach(tab => tab.classList.remove('tab-active'));
   newTab.classList.add('tab-active');
+};
+
+const setDelay = () => {
+  const time = Math.ceil(timeActiveTab / 60);
+  console.log(time);
+  if (time > 10) {
+    return 60;
+  }
+  if (time > 5) {
+    return 30;
+  }
+  if (time > 3) {
+    return 15;
+  }
+  if (time >= 0) {
+    return 1;
+  }
 };
 
 // Progress bar start
@@ -122,7 +135,6 @@ tabs.forEach(tab => {
     localStorage.removeItem('delay');
     localStorage.setItem('tab', current.id);
 
-    delayBar = 60;
     switchBtn.innerText = 'start';
     clearInterval(interval);
     setActiveTab(current);
