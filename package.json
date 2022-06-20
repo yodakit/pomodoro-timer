@@ -5,12 +5,12 @@
   "main": "index.js",
   "homepage": "https://yodakit.github.io/pomodoro-timer",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yodakit/pomodoro-timer.git",
-    "deploy": "gh-pages -d src"
+    "url": "git+https://github.com/yodakit/pomodoro-timer.git"
   },
   "keywords": [],
   "author": "",
