@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Kumbh";
+  src: url("../fonts/KumbhSans-Bold.ttf") format("truetype");
+  font-weight: 700; 
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/RobotoSlab-Bold.ttf") format("truetype"); 
+  font-weight: 700; 
+}
+@font-face {
+  font-family: "Space";
+  src: url("../fonts/SpaceMono-Bold.ttf") format("truetype"); 
+  font-weight: 700; 
+}

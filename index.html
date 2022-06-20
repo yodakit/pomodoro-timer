@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1 class="title">pomodoro</h1>
+  <ul class="tabs">
+    <li id="timer" class="tab">pomodoro</li>
+    <li id="short" class="tab">short break</li>
+    <li id="long" class="tab">long break</li>
+  </ul> 
+  <div class="timer">
+    <div class="timer__wrapper">
+      <svg class="progress-ring">
+        <circle class="progress-ring__circle" />
+      </svg>
+      <div class="timer__info">
+        <h2 id="time" class="timer__time">25:00</h2>
+        <button id="timeBtn" class="timer__button">start</button>
+      </div>
+    </div>
+  </div> 
+  <button id="settings" class="settings">
+    <img src="img/Shape.svg" alt="settings" class="settings__icon">
+  </button>
+  <div id="modalWrapper" class="modal__wrapper">
+    <div id="modal" class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">Settings</h2>
+        <div id="cross" class="modal__close"></div>
+      </div>
+      <div class="time">
+        <h3 class="modal__subtitle">TIME (MINUTES)</h3>
+        <ul class="time__wrapper">
+          <li class="time__item">
+            <h4 class="time__subtitle">pomodoro</h4>
+            <div class="number__wrapper">
+              <button class="number-plus" type="button">
+                <img class="arrow" src="img/arrow.svg" alt="minus">
+              </button>
+              <input id="inputPomodoro" type="number" min="1" max="60" class="time__input">
+              <button class="number-minus" type="button">
+                <img class="arrow arrow-bottom" src="img/arrow.svg" alt="minus">
+              </button>
+            </div>
+          </li>
+          <li class="time__item">
+            <h4 class="time__subtitle">short break</h4>
+            <div class="number__wrapper">
+              <button class="number-plus" type="button">
+                <img class="arrow" src="img/arrow.svg" alt="minus">
+              </button>
+              <input id="inputShort" type="number" min="1" max="60" class="time__input">
+              <button class="number-minus" type="button">
+                <img class="arrow arrow-bottom" src="img/arrow.svg" alt="minus">
+              </button>
+            </div>
+          </li>
+          <li class="time__item">
+            <h4 id="longValue" class="time__subtitle">long break</h4>
+            <div class="number__wrapper">
+              <button class="number-plus" type="button">
+                <img class="arrow" src="img/arrow.svg" alt="minus">
+              </button>
+              <input id="inputLong" type="number" min="1" max="60" class="time__input">
+              <button class="number-minus" type="button">
+                <img class="arrow arrow-bottom" src="img/arrow.svg" alt="minus">
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="font">
+        <h3 class="modal__subtitle">FONT</h3>
+        <ul class="font__wrapper">
+          <li class="font__item">
+            <span data-font="Kumbh" class="font-family kumbh">Aa</span>
+          </li>
+          <li class="font__item">
+            <span data-font="Roboto" class="font-family roboto">Aa</span>
+          </li>
+          <li class="font__item">
+            <span data-font="Space" class="font-family space">Aa</span>
+          </li>
+        </ul>
+      </div>
+      <div class="color">
+        <h3 class="modal__subtitle">color</h3>
+        <ul class="color__wrapper">
+          <li data-color="#F87070" class="color__item red"></li>
+          <li data-color="#70F3F8" class="color__item blue"></li>
+          <li data-color="#D881F8" class="color__item purple"></li>
+        </ul>
+      </div>
+      <button id="modalBtn" class="modal__button">Apply</button>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+</body>
+</html>
