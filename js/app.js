@@ -7,7 +7,7 @@ let pomodoroTime = localStorage.getItem('pomodoroTime') || 20,
     timeActiveTab = localStorage.getItem('timeActiveTab'),
     interval;
 
-const audio = new Audio("../audio/timer-bell.mp3");
+const audio = new Audio("./audio/timer-bell.mp3");
 
 // Dom elements and options
 const timeELem = document.getElementById('time'),
@@ -115,7 +115,6 @@ tabs.forEach(tab => {
     const current = event.target;
 
     localStorage.removeItem('actualTime');
-    localStorage.removeItem('delay');
     localStorage.setItem('tab', current.id);
 
     switchBtn.innerText = 'start';
@@ -195,12 +194,15 @@ const applySettings = () => {
   localStorage.setItem('longTime', longTime);
 
   localStorage.removeItem('actualTime');
-  localStorage.removeItem('delay');
 
   clearInterval(interval);
 
   allElements.style.setProperty('--main-color', color);
   allElements.style.setProperty('--main-font', font);
+
+  font === "Space"
+    ? timeELem.style.fontSize = "5.5rem"
+    : timeELem.removeAttribute("style");
 };
 
 // start settings
@@ -210,6 +212,7 @@ inputLong.value = longTime;
 document.querySelector(`[data-font="${font}"]`).parentElement.classList.add('font__item-active');
 document.querySelector(`[data-color="${color}"]`).classList.add('color__item-active');
 applySettings();
+localStorage.setItem("actualTime", actualTime);
 
 // listeners
 settingsBtn.addEventListener('click', () => {
