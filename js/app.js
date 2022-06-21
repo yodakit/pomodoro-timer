@@ -260,6 +260,7 @@ colorElements.forEach(elem => {
 });
 
 applyBtn.addEventListener('click', () => {
+  switchBtn.innerText = 'start';
   applySettings();
   setActiveTime();
   renderTime(actualTime);
