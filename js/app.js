@@ -201,8 +201,8 @@ const applySettings = () => {
   allElements.style.setProperty('--main-font', font);
 
   font === "Space"
-    ? timeELem.style.fontSize = "5.5rem"
-    : timeELem.removeAttribute("style");
+    ? timeELem.classList.add("timer__time-space")
+    : timeELem.classList.remove("timer__time-space");
 };
 
 // start settings

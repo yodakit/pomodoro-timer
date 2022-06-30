@@ -92,6 +92,9 @@ li {
   color: #D7E0FF;
   font-size: 6rem;
 }
+.timer__time-space {
+  font-size: 5.5rem;
+}
 .timer__button {
   font-family: var(--main-font);
   font-size: 1rem;
@@ -434,6 +437,9 @@ li {
   }
   .timer__time {
     font-size: 4.5rem;
+  }
+  .timer__time-space {
+    font-size: 4.2rem;
   }
   .timer__button {
     font-size: 0.875rem;
